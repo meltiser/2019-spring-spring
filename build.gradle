@@ -1,17 +1,42 @@
-plugins {
-    id 'java'
-}
-sourceCompatibility=1.8
+group 'com.epam'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'com.epam.mvc.Main'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile 'org.springframework:spring-core:5.1.3.RELEASE'
-    compile 'org.springframework:spring-context:5.1.3.RELEASE'
+    implementation 'org.springframework:spring-core:5.1.3.RELEASE'
+    implementation 'org.springframework:spring-context:5.1.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.3.RELEASE'
+    
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.1.3.RELEASE'
+
+    
+    implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '8.0.47'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-group 'com.epam'
-version '0.0.1-SNAPSHOT'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+
+shadowJar {
+    mergeServiceFiles()
+}
