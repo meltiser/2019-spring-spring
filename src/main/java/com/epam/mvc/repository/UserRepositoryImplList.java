@@ -13,9 +13,6 @@ public class UserRepositoryImplList implements UserRepository {
     private List<User> users = new ArrayList<>();
 
     public UserRepositoryImplList() {
-        users.add(new User());
-        users.add(new User());
-        users.add(new User());
         users.add(new User(1L, "Bob", LocalDate.of(1994, 12, 5)));
         users.add(new User(2L, "Tom", LocalDate.of(1991, 4, 9)));
         users.add(new User(3L, "John", LocalDate.of(1984, 5, 11)));
@@ -28,9 +25,8 @@ public class UserRepositoryImplList implements UserRepository {
 
     @Override
     public Optional<User> getUserById(Long id) {
-        Optional<User> any = users.stream()
+        return users.stream()
                 .filter(user -> id.equals(user.getId()))
                 .findAny();
-        return any;
     }
 }

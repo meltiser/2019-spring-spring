@@ -10,6 +10,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan(basePackages = "com.epam.mvc")
 public class AppConfig implements WebMvcConfigurer {
 
-
-
 }
