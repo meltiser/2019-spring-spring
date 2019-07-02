@@ -37,13 +37,13 @@ public class AppIntegrationTest {
 
     @Test
     public void filterTest() throws Exception {
-        mockMvc.perform(get("/users?teapot=true"))
+        mockMvc.perform(get("/user/all?teapot=true"))
                 .andExpect(status().isIAmATeapot());
     }
 
     @Test
     public void getAllUsersTest() throws Exception {
-        mockMvc.perform(get("/users"))
+        mockMvc.perform(get("/user/all"))
                 .andExpect(status().isOk());
     }
 
